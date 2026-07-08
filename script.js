@@ -22,9 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 <p>${tool.desc}</p>
             `;
             
-            // Add click listener to navigate to new page
             card.addEventListener('click', () => {
-                window.location.href = `tools/${tool.id}/index.html`;
+                window.location.href = `tools/${tool.id}/`;
             });
 
             toolsGrid.appendChild(card);

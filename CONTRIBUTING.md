@@ -44,7 +44,7 @@ git branch -a
 ২. `<body>` এর ঠিক নিচে ব্যাকগ্রাউন্ড ডিজাইন এবং ব্যাক বাটনটি দিন:
 ```html
 <!-- Background and Back Button -->
-<a href="../../index.html" style="position: absolute; top: 20px; left: 20px; text-decoration: none; color: var(--text-secondary); background: var(--surface-color); border: 1px solid var(--border-color); padding: 8px 16px; border-radius: 6px; font-size: 0.9rem; transition: all 0.2s; display: flex; align-items: center; gap: 8px; z-index: 100;"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+<a href="../../" style="position: absolute; top: 20px; left: 20px; text-decoration: none; color: var(--text-secondary); background: var(--surface-color); border: 1px solid var(--border-color); padding: 8px 16px; border-radius: 6px; font-size: 0.9rem; transition: all 0.2s; display: flex; align-items: center; gap: 8px; z-index: 100;"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
 ```
 
 ### ধাপ ৩: টুলটি ওয়েবসাইটে রেজিস্টার করুন
