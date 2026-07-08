@@ -5,19 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tools Planet</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <h1>Welcome to Tools Planet</h1>
-        <p>Your one-stop destination for awesome web tools.</p>
-    </header>
-    <main>
-        <div class="tool-card">
-            <h2>Feature Coming Soon</h2>
-            <p>We are working on adding amazing features!</p>
-            <button id="alertBtn">Click Me!</button>
-        </div>
-    </main>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar glass">
+            <div class="logo">
+                <div class="logo-icon"></div>
+                <h2>ToolsPlanet</h2>
+            </div>
+            <nav id="sidebar-nav">
+                <ul>
+                    <li class="active"><a href="index.html" id="home-link">Home</a></li>
+                    <li><a href="#">Favorites</a></li>
+                    <li><a href="#">Categories</a></li>
+                    <li><a href="#">Settings</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content glass">
+            <!-- Home View: Grid of Tools -->
+            <div id="home-view" class="view active-view">
+                <header class="topbar">
+                    <div class="topbar-left">
+                        <h1>Welcome to Tools Planet</h1>
+                        <p>Your beautiful, centralized hub for everyday utilities.</p>
+                    </div>
+                    <div class="search-container">
+                        <input type="text" id="search-input" class="search-bar glass" placeholder="Search tools... (e.g. calculator)">
+                    </div>
+                </header>
+                <div class="tools-grid" id="tools-grid">
+                    <!-- Dynamic tool cards will be injected here -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Background decoration -->
+    <div class="bg-shape shape1"></div>
+    <div class="bg-shape shape2"></div>
+    <div class="bg-shape shape3"></div>
+
+    <script src="tools-list.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

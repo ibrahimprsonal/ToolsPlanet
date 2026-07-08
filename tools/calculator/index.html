@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../style.css">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body, html {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .calculator {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 24px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+            width: 320px;
+        }
+        .display {
+            background: rgba(15, 23, 42, 0.7);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: right;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #f8fafc;
+            min-height: 80px;
+            word-wrap: break-word;
+        }
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+        button {
+            border: none;
+            padding: 16px;
+            font-size: 1.2rem;
+            border-radius: 12px;
+            cursor: pointer;
+            font-family: inherit;
+            background: rgba(51, 65, 85, 0.6);
+            color: #f8fafc;
+            transition: all 0.2s;
+            font-weight: 500;
+        }
+        button:hover { background: rgba(71, 85, 105, 0.9); }
+        button:active { transform: scale(0.95); }
+        .operator { background: #38bdf8; color: #0f172a; }
+        .operator:hover { background: #7dd3fc; }
+        .equals { background: #10b981; color: white; grid-column: span 2; }
+        .equals:hover { background: #34d399; }
+        .clear { background: #ef4444; color: white; }
+        .clear:hover { background: #f87171; }
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            text-decoration: none;
+            color: #f8fafc;
+            background: rgba(51, 65, 85, 0.6);
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+        .back-btn:hover { background: rgba(71, 85, 105, 0.9); }
+    </style>
+</head>
+<body>
+    <!-- Background decoration -->
+    <div class="bg-shape shape1"></div>
+    <div class="bg-shape shape2"></div>
+    <div class="bg-shape shape3"></div>
+
+    <a href="../../index.html" class="back-btn">⬅ Back to Home</a>
+    <div class="calculator">
+        <div class="display" id="display">0</div>
+        <div class="buttons">
+            <button class="clear" onclick="clearDisplay()">C</button>
+            <button onclick="append('/')">÷</button>
+            <button onclick="append('*')">×</button>
+            <button class="operator" onclick="append('-')">−</button>
+            
+            <button onclick="append('7')">7</button>
+            <button onclick="append('8')">8</button>
+            <button onclick="append('9')">9</button>
+            <button class="operator" onclick="append('+')">+</button>
+            
+            <button onclick="append('4')">4</button>
+            <button onclick="append('5')">5</button>
+            <button onclick="append('6')">6</button>
+            <button class="equals" style="grid-row: span 3;" onclick="calculate()">=</button>
+            
+            <button onclick="append('1')">1</button>
+            <button onclick="append('2')">2</button>
+            <button onclick="append('3')">3</button>
+            
+            <button style="grid-column: span 2;" onclick="append('0')">0</button>
+            <button onclick="append('.')">.</button>
+        </div>
+    </div>
+
+    <script>
+        const display = document.getElementById('display');
+        let current = '';
+
+        function append(val) {
+            if(current === '0' && val !== '.') current = '';
+            current += val;
+            updateDisplay();
+        }
+
+        function clearDisplay() {
+            current = '0';
+            updateDisplay();
+        }
+
+        function calculate() {
+            try {
+                // Warning: eval is used for simple demo purposes. In production, use a math parser.
+                current = eval(current).toString();
+            } catch (e) {
+                current = 'Error';
+            }
+            updateDisplay();
+        }
+
+        function updateDisplay() {
+            display.innerText = current || '0';
+        }
+    </script>
+</body>
+</html>
