@@ -3,178 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Currency Converter</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <title>Live Currency Converter - Tools Planet</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Global Style -->
     <link rel="stylesheet" href="../../style.css">
-    <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body, html {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .converter-box {
-            background: var(--surface-color);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 32px;
-            box-shadow: var(--card-shadow);
-            width: 100%;
-            max-width: 400px;
-            color: var(--text-primary);
-        }
-        .converter-box h2 {
-            margin-bottom: 24px;
-            text-align: center;
-            font-size: 1.5rem;
-        }
-        .input-group {
-            margin-bottom: 20px;
-        }
-        .input-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: #94a3b8;
-            font-size: 0.9rem;
-        }
-        .input-group input, .input-group select {
-            width: 100%;
-            padding: 12px 16px;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-            background: #09090b;
-            color: var(--text-primary);
-            font-size: 1rem;
-            font-family: inherit;
-            outline: none;
-            transition: all 0.2s;
-        }
-        .input-group input:focus, .input-group select:focus {
-            border-color: var(--accent-color);
-            box-shadow: 0 0 0 2px var(--accent-glow);
-        }
-        .convert-btn {
-            width: 100%;
-            padding: 14px;
-            border: none;
-            border-radius: 8px;
-            background: var(--accent-color);
-            color: white;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-            margin-top: 10px;
-        }
-        .convert-btn:hover {
-            background: #4f46e5;
-        }
-        .convert-btn:active {
-            transform: scale(0.98);
-        }
-        .result {
-            margin-top: 24px;
-            padding: 20px;
-            background: #09090b;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            text-align: center;
-            font-size: 1.25rem;
-            display: none;
-        }
-        .back-btn {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            text-decoration: none;
-            color: var(--text-secondary);
-            background: var(--surface-color);
-            border: 1px solid var(--border-color);
-            padding: 8px 16px;
-            border-radius: 6px;
-            font-size: 0.9rem;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            z-index: 100;
-        }
-        .back-btn:hover { color: var(--text-primary); border-color: var(--accent-color); }
-    </style>
+    <!-- Local Style -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <a href="../../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
 
-    <div class="converter-box">
-        <h2><i class="fa-solid fa-money-bill-transfer" style="color: var(--accent-color); margin-right: 8px;"></i> Currency Converter</h2>
-        
-        <div class="input-group">
-            <label>Amount</label>
-            <input type="number" id="amount" value="1" min="0">
-        </div>
-        
-        <div style="display: flex; gap: 16px;">
-            <div class="input-group" style="flex: 1;">
-                <label>From</label>
-                <select id="from-currency">
-                    <option value="USD">USD - US Dollar</option>
-                    <option value="EUR">EUR - Euro</option>
-                    <option value="GBP">GBP - British Pound</option>
-                    <option value="BDT">BDT - Bangladeshi Taka</option>
-                    <option value="INR">INR - Indian Rupee</option>
-                </select>
+    <div class="converter-wrapper">
+        <div class="converter-box glass">
+            <div class="converter-header">
+                <h2><i class="fa-solid fa-money-bill-trend-up"></i> Currency Converter Dashboard</h2>
+                <p class="subtitle">Professional Real-time Market Exchange Rates</p>
             </div>
             
-            <div class="input-group" style="flex: 1;">
-                <label>To</label>
-                <select id="to-currency">
-                    <option value="BDT">BDT - Bangladeshi Taka</option>
-                    <option value="USD">USD - US Dollar</option>
-                    <option value="EUR">EUR - Euro</option>
-                    <option value="GBP">GBP - British Pound</option>
-                    <option value="INR">INR - Indian Rupee</option>
-                </select>
+            <div class="converter-body">
+                <!-- Left Column: Inputs -->
+                <div class="converter-left">
+                    <div class="input-section">
+                        <label for="amount">Amount to Convert</label>
+                        <div class="amount-input-wrapper">
+                            <span class="currency-symbol" id="from-symbol">$</span>
+                            <input type="number" id="amount" value="1.00" min="0" step="any" placeholder="Enter amount">
+                        </div>
+                    </div>
+
+                    <div class="currency-selection-row">
+                        <!-- From Currency -->
+                        <div class="currency-group">
+                            <label>From</label>
+                            <div class="custom-select" id="from-select-container">
+                                <div class="select-selected" id="from-selected">
+                                    <span class="flag-icon" id="from-flag">🇺🇸</span>
+                                    <span class="currency-code" id="from-code-display">USD</span>
+                                    <i class="fa-solid fa-chevron-down"></i>
+                                </div>
+                                <div class="select-items hide" id="from-dropdown">
+                                    <div class="search-box">
+                                        <i class="fa-solid fa-magnifying-glass"></i>
+                                        <input type="text" placeholder="Search currency..." id="from-search">
+                                    </div>
+                                    <div class="options-list" id="from-options-list">
+                                        <!-- Options injected via JS -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Swap Button -->
+                        <div class="swap-wrapper">
+                            <button class="swap-btn" id="swap-btn" title="Swap Currencies">
+                                <i class="fa-solid fa-arrow-right-arrow-left"></i>
+                            </button>
+                        </div>
+
+                        <!-- To Currency -->
+                        <div class="currency-group">
+                            <label>To</label>
+                            <div class="custom-select" id="to-select-container">
+                                <div class="select-selected" id="to-selected">
+                                    <span class="flag-icon" id="to-flag">🇧🇩</span>
+                                    <span class="currency-code" id="to-code-display">BDT</span>
+                                    <i class="fa-solid fa-chevron-down"></i>
+                                </div>
+                                <div class="select-items hide" id="to-dropdown">
+                                    <div class="search-box">
+                                        <i class="fa-solid fa-magnifying-glass"></i>
+                                        <input type="text" placeholder="Search currency..." id="to-search">
+                                    </div>
+                                    <div class="options-list" id="to-options-list">
+                                        <!-- Options injected via JS -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Results -->
+                <div class="converter-right">
+                    <div class="result-card glass-panel">
+                        <div class="conversion-text">
+                            <span id="base-amount-text">1.00 USD =</span>
+                        </div>
+                        <div class="final-result" id="final-result">
+                            <span id="target-symbol">৳</span><span id="converted-amount">...</span> <span id="target-code">BDT</span>
+                        </div>
+                        
+                        <div class="divider"></div>
+                        
+                        <div class="market-rate-container">
+                            <div class="market-rate-info">
+                                <i class="fa-solid fa-chart-line"></i> 
+                                <span id="rate-info">1 USD = ... BDT</span>
+                            </div>
+                            <div class="market-status">Live Market Rate</div>
+                        </div>
+                        
+                        <div class="converter-footer">
+                            <i class="fa-regular fa-clock"></i>
+                            <span id="last-updated">Fetching live rates...</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-
-        <button class="convert-btn" onclick="convertCurrency()">Convert</button>
-
-        <div class="result" id="result">
-            <!-- Result will be shown here -->
+            
         </div>
     </div>
 
-    <script>
-        // Demo exchange rates based on USD
-        const rates = {
-            USD: 1,
-            EUR: 0.91,
-            GBP: 0.78,
-            BDT: 110.50,
-            INR: 82.90
-        };
-
-        function convertCurrency() {
-            const amount = parseFloat(document.getElementById('amount').value);
-            const from = document.getElementById('from-currency').value;
-            const to = document.getElementById('to-currency').value;
-            const resultDiv = document.getElementById('result');
-
-            if (isNaN(amount) || amount <= 0) {
-                resultDiv.innerHTML = "Please enter a valid amount.";
-                resultDiv.style.display = "block";
-                return;
-            }
-
-            // Convert 'from' currency to USD first, then to the 'to' currency
-            const amountInUSD = amount / rates[from];
-            const finalAmount = amountInUSD * rates[to];
-
-            resultDiv.innerHTML = `<strong>${amount} ${from}</strong> = <br><span style="font-size: 1.8rem; color: var(--accent-color); font-weight: 600; display: block; margin-top: 8px;">${finalAmount.toFixed(2)} ${to}</span>`;
-            resultDiv.style.display = "block";
-        }
-    </script>
+    <!-- Script -->
+    <script src="script.js"></script>
 </body>
 </html>
