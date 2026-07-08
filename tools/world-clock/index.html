@@ -130,6 +130,49 @@
             border-color: var(--accent-color) !important;
             box-shadow: 0 0 15px var(--accent-glow);
         }
+        .add-clock-container {
+            display: flex;
+            gap: 12px;
+            max-width: 450px;
+            margin: 24px auto 0;
+        }
+        
+        .timezone-input {
+            flex-grow: 1;
+            padding: 12px 16px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background: rgba(9, 9, 11, 0.6);
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            font-family: inherit;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+        
+        .timezone-input:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 2px var(--accent-glow);
+        }
+        
+        .add-btn {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 0 20px;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .add-btn:hover {
+            background: #4f46e5;
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
     </style>
 </head>
 <body>
@@ -143,6 +186,11 @@
             <div class="header">
                 <h1><i class="fa-solid fa-globe"></i>World Clock</h1>
                 <p>Track the time across major global cities</p>
+                <form id="add-clock-form" class="add-clock-container" onsubmit="addClock(event)">
+                    <input type="text" id="timezone-input" class="timezone-input" list="timezone-list" placeholder="Search timezone (e.g. Asia/Dhaka)..." required autocomplete="off">
+                    <datalist id="timezone-list"></datalist>
+                    <button type="submit" class="add-btn"><i class="fa-solid fa-plus"></i> Add</button>
+                </form>
             </div>
             <div class="clocks" id="clocks">
                 <!-- Clocks injected via JS -->
@@ -158,6 +206,30 @@
             { name: 'Tokyo', timeZone: 'Asia/Tokyo', icon: 'fa-torii-gate' },
             { name: 'Sydney', timeZone: 'Australia/Sydney', icon: 'fa-bridge-water' }
         ];
+        
+        const timezoneList = document.getElementById('timezone-list');
+        const allTimezones = Intl.supportedValuesOf('timeZone');
+        
+        allTimezones.forEach(tz => {
+            const option = document.createElement('option');
+            option.value = tz;
+            timezoneList.appendChild(option);
+        });
+
+        function addClock(event) {
+            event.preventDefault();
+            const input = document.getElementById('timezone-input');
+            const tz = input.value.trim();
+            
+            if (allTimezones.includes(tz)) {
+                const cityName = tz.split('/').pop().replace(/_/g, ' ');
+                cities.push({ name: cityName, timeZone: tz, icon: 'fa-clock' });
+                input.value = '';
+                updateClocks();
+            } else {
+                alert('Please select a valid timezone from the dropdown list.');
+            }
+        }
 
         function updateClocks() {
             const container = document.getElementById('clocks');
