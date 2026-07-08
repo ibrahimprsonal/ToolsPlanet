@@ -5,109 +5,158 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>World Clock</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../../style.css">
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body, html {
+        .page-wrapper {
             height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-family: 'Inter', sans-serif;
-            color: #f8fafc;
+            padding: 20px;
         }
+        
         .clock-container {
-            background: rgba(30, 41, 59, 0.5);
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: var(--card-shadow);
+            width: 100%;
+            max-width: 900px;
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 24px;
-            padding: 32px;
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
-            width: 90%;
-            max-width: 600px;
         }
+        
         .header {
             text-align: center;
-            margin-bottom: 24px;
+            margin-bottom: 40px;
         }
+        
         .header h1 {
-            font-size: 2rem;
+            font-size: 2.2rem;
             font-weight: 600;
-            color: #38bdf8;
+            color: var(--text-primary);
+            margin-bottom: 10px;
         }
+        
+        .header h1 i {
+            color: var(--accent-color);
+            margin-right: 12px;
+        }
+        
+        .header p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+        
         .clocks {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 24px;
         }
+        
         .clock-card {
-            background: rgba(15, 23, 42, 0.7);
+            background: rgba(9, 9, 11, 0.4);
+            border: 1px solid var(--border-color);
             border-radius: 16px;
-            padding: 20px;
+            padding: 24px;
             text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: transform 0.3s;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
+        
+        .clock-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--accent-color);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
         .clock-card:hover {
             transform: translateY(-5px);
-            border-color: rgba(56, 189, 248, 0.5);
+            border-color: var(--accent-color);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3), 0 0 15px var(--accent-glow);
+            background: var(--hover-bg);
         }
+        
+        .clock-card:hover::before {
+            opacity: 1;
+        }
+        
         .city {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             font-weight: 500;
-            margin-bottom: 8px;
-            color: #94a3b8;
+            margin-bottom: 12px;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
+        
+        .clock-card:hover .city {
+            color: var(--text-primary);
+        }
+        
+        .city i {
+            color: var(--accent-color);
+            opacity: 0.8;
+        }
+        
         .time {
-            font-size: 1.6rem;
+            font-size: 2.2rem;
             font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            font-variant-numeric: tabular-nums;
+            letter-spacing: -0.5px;
         }
+        
         .date {
-            font-size: 0.85rem;
-            color: #64748b;
-            margin-top: 4px;
-        }
-        .back-btn {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            text-decoration: none;
-            color: #f8fafc;
-            background: rgba(51, 65, 85, 0.6);
-            padding: 10px 16px;
-            border-radius: 8px;
             font-size: 0.9rem;
-            transition: all 0.3s;
-            z-index: 100;
+            color: var(--text-secondary);
         }
-        .back-btn:hover { background: rgba(71, 85, 105, 0.9); }
+        
+        .back-btn:hover {
+            background: var(--hover-bg) !important;
+            color: var(--text-primary) !important;
+            border-color: var(--accent-color) !important;
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
     </style>
 </head>
 <body>
-    <!-- Background decoration -->
-    <div class="bg-shape shape1"></div>
-    <div class="bg-shape shape2"></div>
-    <div class="bg-shape shape3"></div>
-
-    <a href="../../index.html" class="back-btn">⬅ Back to Home</a>
+    <!-- Background and Back Button -->
+    <a href="../../index.html" class="back-btn" style="position: absolute; top: 20px; left: 20px; text-decoration: none; color: var(--text-secondary); background: var(--surface-color); border: 1px solid var(--border-color); padding: 8px 16px; border-radius: 6px; font-size: 0.9rem; transition: all 0.2s; display: flex; align-items: center; gap: 8px; z-index: 100;">
+        <i class="fa-solid fa-arrow-left"></i> Back to Home
+    </a>
     
-    <div class="clock-container">
-        <div class="header">
-            <h1>World Clock</h1>
-        </div>
-        <div class="clocks" id="clocks">
-            <!-- Clocks injected via JS -->
+    <div class="page-wrapper">
+        <div class="clock-container glass">
+            <div class="header">
+                <h1><i class="fa-solid fa-globe"></i>World Clock</h1>
+                <p>Track the time across major global cities</p>
+            </div>
+            <div class="clocks" id="clocks">
+                <!-- Clocks injected via JS -->
+            </div>
         </div>
     </div>
 
     <script>
         const cities = [
-            { name: 'Local', timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone },
-            { name: 'New York', timeZone: 'America/New_York' },
-            { name: 'London', timeZone: 'Europe/London' },
-            { name: 'Tokyo', timeZone: 'Asia/Tokyo' },
-            { name: 'Sydney', timeZone: 'Australia/Sydney' }
+            { name: 'Local Time', timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone, icon: 'fa-location-dot' },
+            { name: 'New York', timeZone: 'America/New_York', icon: 'fa-building' },
+            { name: 'London', timeZone: 'Europe/London', icon: 'fa-tree-city' },
+            { name: 'Tokyo', timeZone: 'Asia/Tokyo', icon: 'fa-torii-gate' },
+            { name: 'Sydney', timeZone: 'Australia/Sydney', icon: 'fa-bridge-water' }
         ];
 
         function updateClocks() {
@@ -125,7 +174,7 @@
 
                 html += `
                     <div class="clock-card">
-                        <div class="city">${city.name}</div>
+                        <div class="city"><i class="fa-solid ${city.icon}"></i> ${city.name}</div>
                         <div class="time">${timeString}</div>
                         <div class="date">${dateString}</div>
                     </div>
