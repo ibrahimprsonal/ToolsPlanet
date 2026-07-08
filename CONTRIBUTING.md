@@ -1,3 +1,10 @@
+git config --list
+
+git branch --show-current
+
+git branch -a
+
+
 # ToolsPlanet - Developer Guide
 
 হ্যালো! **ToolsPlanet** প্রোজেক্টে কাজ করার জন্য এই গাইডটি তৈরি করা হয়েছে। এই সাইটটি একটি "Micro-frontend" আর্কিটেকচার ফলো করে তৈরি করা হয়েছে, যাতে আপনি খুব সহজেই অন্য কোড নষ্ট না করে নতুন টুল যোগ করতে পারেন।
