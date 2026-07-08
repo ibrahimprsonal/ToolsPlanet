@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coming Soon</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../../style.css">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -17,43 +18,42 @@
         .container {
             text-align: center;
             padding: 40px;
-            background: rgba(30, 41, 59, 0.4);
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            background: var(--surface-color);
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--card-shadow);
+            max-width: 400px;
         }
         .icon {
-            font-size: 64px;
+            font-size: 48px;
             margin-bottom: 20px;
+            color: var(--accent-color);
         }
-        h1 { font-size: 2rem; margin-bottom: 10px; color: #f8fafc; }
-        p { color: #94a3b8; }
+        h1 { font-size: 1.5rem; font-weight: 600; margin-bottom: 8px; color: var(--text-primary); }
+        p { color: var(--text-secondary); font-size: 0.95rem; }
         .back-btn {
             position: absolute;
             top: 20px;
             left: 20px;
             text-decoration: none;
-            color: #f8fafc;
-            background: rgba(51, 65, 85, 0.6);
-            padding: 10px 16px;
-            border-radius: 8px;
+            color: var(--text-secondary);
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            padding: 8px 16px;
+            border-radius: 6px;
             font-size: 0.9rem;
-            transition: all 0.3s;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
-        .back-btn:hover { background: rgba(71, 85, 105, 0.9); }
+        .back-btn:hover { color: var(--text-primary); border-color: var(--accent-color); }
     </style>
 </head>
 <body>
-    <!-- Background decoration -->
-    <div class="bg-shape shape1"></div>
-    <div class="bg-shape shape2"></div>
-    <div class="bg-shape shape3"></div>
-
-    <a href="../../index.html" class="back-btn">⬅ Back to Home</a>
+    <a href="../../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
     <div class="container">
-        <div class="icon">🚀</div>
+        <div class="icon"><i class="fa-solid fa-hammer"></i></div>
         <h1>Coming Soon</h1>
         <p>This tool is currently under construction.</p>
     </div>

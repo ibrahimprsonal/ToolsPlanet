@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../../style.css">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -15,25 +16,25 @@
             justify-content: center;
         }
         .calculator {
-            background: rgba(30, 41, 59, 0.5);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 24px;
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
             padding: 24px;
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+            box-shadow: var(--card-shadow);
             width: 320px;
         }
         .display {
-            background: rgba(15, 23, 42, 0.7);
-            border-radius: 12px;
+            background: #09090b;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
             padding: 20px;
             text-align: right;
             font-size: 2.5rem;
             margin-bottom: 20px;
-            color: #f8fafc;
+            color: var(--text-primary);
             min-height: 80px;
             word-wrap: break-word;
+            font-family: monospace;
         }
         .buttons {
             display: grid;
@@ -41,47 +42,46 @@
             gap: 12px;
         }
         button {
-            border: none;
+            border: 1px solid transparent;
             padding: 16px;
             font-size: 1.2rem;
-            border-radius: 12px;
+            border-radius: 8px;
             cursor: pointer;
             font-family: inherit;
-            background: rgba(51, 65, 85, 0.6);
-            color: #f8fafc;
+            background: var(--hover-bg);
+            color: var(--text-primary);
             transition: all 0.2s;
             font-weight: 500;
         }
-        button:hover { background: rgba(71, 85, 105, 0.9); }
+        button:hover { background: #3f3f46; border-color: var(--border-color); }
         button:active { transform: scale(0.95); }
-        .operator { background: #38bdf8; color: #0f172a; }
-        .operator:hover { background: #7dd3fc; }
+        .operator { background: var(--accent-glow); color: var(--accent-color); border: 1px solid var(--accent-glow); }
+        .operator:hover { background: var(--accent-color); color: white; }
         .equals { background: #10b981; color: white; grid-column: span 2; }
-        .equals:hover { background: #34d399; }
+        .equals:hover { background: #059669; }
         .clear { background: #ef4444; color: white; }
-        .clear:hover { background: #f87171; }
+        .clear:hover { background: #dc2626; }
         .back-btn {
             position: absolute;
             top: 20px;
             left: 20px;
             text-decoration: none;
-            color: #f8fafc;
-            background: rgba(51, 65, 85, 0.6);
-            padding: 10px 16px;
-            border-radius: 8px;
+            color: var(--text-secondary);
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            padding: 8px 16px;
+            border-radius: 6px;
             font-size: 0.9rem;
-            transition: all 0.3s;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
-        .back-btn:hover { background: rgba(71, 85, 105, 0.9); }
+        .back-btn:hover { color: var(--text-primary); border-color: var(--accent-color); }
     </style>
 </head>
 <body>
-    <!-- Background decoration -->
-    <div class="bg-shape shape1"></div>
-    <div class="bg-shape shape2"></div>
-    <div class="bg-shape shape3"></div>
-
-    <a href="../../index.html" class="back-btn">⬅ Back to Home</a>
+    <a href="../../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
     <div class="calculator">
         <div class="display" id="display">0</div>
         <div class="buttons">

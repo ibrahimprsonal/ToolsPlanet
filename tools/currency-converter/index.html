@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Converter</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../style.css">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body, html {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .converter-box {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: var(--card-shadow);
+            width: 100%;
+            max-width: 400px;
+            color: var(--text-primary);
+        }
+        .converter-box h2 {
+            margin-bottom: 24px;
+            text-align: center;
+            font-size: 1.5rem;
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background: #09090b;
+            color: var(--text-primary);
+            font-size: 1rem;
+            font-family: inherit;
+            outline: none;
+            transition: all 0.2s;
+        }
+        .input-group input:focus, .input-group select:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 2px var(--accent-glow);
+        }
+        .convert-btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            background: var(--accent-color);
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 10px;
+        }
+        .convert-btn:hover {
+            background: #4f46e5;
+        }
+        .convert-btn:active {
+            transform: scale(0.98);
+        }
+        .result {
+            margin-top: 24px;
+            padding: 20px;
+            background: #09090b;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            text-align: center;
+            font-size: 1.25rem;
+            display: none;
+        }
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            text-decoration: none;
+            color: var(--text-secondary);
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 100;
+        }
+        .back-btn:hover { color: var(--text-primary); border-color: var(--accent-color); }
+    </style>
+</head>
+<body>
+    <a href="../../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+
+    <div class="converter-box">
+        <h2><i class="fa-solid fa-money-bill-transfer" style="color: var(--accent-color); margin-right: 8px;"></i> Currency Converter</h2>
+        
+        <div class="input-group">
+            <label>Amount</label>
+            <input type="number" id="amount" value="1" min="0">
+        </div>
+        
+        <div style="display: flex; gap: 16px;">
+            <div class="input-group" style="flex: 1;">
+                <label>From</label>
+                <select id="from-currency">
+                    <option value="USD">USD - US Dollar</option>
+                    <option value="EUR">EUR - Euro</option>
+                    <option value="GBP">GBP - British Pound</option>
+                    <option value="BDT">BDT - Bangladeshi Taka</option>
+                    <option value="INR">INR - Indian Rupee</option>
+                </select>
+            </div>
+            
+            <div class="input-group" style="flex: 1;">
+                <label>To</label>
+                <select id="to-currency">
+                    <option value="BDT">BDT - Bangladeshi Taka</option>
+                    <option value="USD">USD - US Dollar</option>
+                    <option value="EUR">EUR - Euro</option>
+                    <option value="GBP">GBP - British Pound</option>
+                    <option value="INR">INR - Indian Rupee</option>
+                </select>
+            </div>
+        </div>
+
+        <button class="convert-btn" onclick="convertCurrency()">Convert</button>
+
+        <div class="result" id="result">
+            <!-- Result will be shown here -->
+        </div>
+    </div>
+
+    <script>
+        // Demo exchange rates based on USD
+        const rates = {
+            USD: 1,
+            EUR: 0.91,
+            GBP: 0.78,
+            BDT: 110.50,
+            INR: 82.90
+        };
+
+        function convertCurrency() {
+            const amount = parseFloat(document.getElementById('amount').value);
+            const from = document.getElementById('from-currency').value;
+            const to = document.getElementById('to-currency').value;
+            const resultDiv = document.getElementById('result');
+
+            if (isNaN(amount) || amount <= 0) {
+                resultDiv.innerHTML = "Please enter a valid amount.";
+                resultDiv.style.display = "block";
+                return;
+            }
+
+            // Convert 'from' currency to USD first, then to the 'to' currency
+            const amountInUSD = amount / rates[from];
+            const finalAmount = amountInUSD * rates[to];
+
+            resultDiv.innerHTML = `<strong>${amount} ${from}</strong> = <br><span style="font-size: 1.8rem; color: var(--accent-color); font-weight: 600; display: block; margin-top: 8px;">${finalAmount.toFixed(2)} ${to}</span>`;
+            resultDiv.style.display = "block";
+        }
+    </script>
+</body>
+</html>

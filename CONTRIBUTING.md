@@ -1,4 +1,4 @@
-# ToolsPlanet - Developer Guide 🚀
+# ToolsPlanet - Developer Guide
 
 হ্যালো! **ToolsPlanet** প্রোজেক্টে কাজ করার জন্য এই গাইডটি তৈরি করা হয়েছে। এই সাইটটি একটি "Micro-frontend" আর্কিটেকচার ফলো করে তৈরি করা হয়েছে, যাতে আপনি খুব সহজেই অন্য কোড নষ্ট না করে নতুন টুল যোগ করতে পারেন।
 
@@ -6,7 +6,7 @@
 
 ---
 
-## 🏗️ সাইটটি কীভাবে কাজ করে?
+## 1. Architecture: How the Site Works
 
 এই সাইটের মূল কাঠামো ৩টি অংশে বিভক্ত:
 
@@ -16,7 +16,7 @@
 
 ---
 
-## 🛠️ কীভাবে নতুন একটি টুল অ্যাড করবেন?
+## 2. How to Add a New Tool
 
 নতুন টুল যোগ করা খুবই সহজ! শুধু নিচের ৩টি ধাপ ফলো করুন:
 
@@ -36,12 +36,8 @@
 
 ২. `<body>` এর ঠিক নিচে ব্যাকগ্রাউন্ড ডিজাইন এবং ব্যাক বাটনটি দিন:
 ```html
-<!-- Background decoration -->
-<div class="bg-shape shape1"></div>
-<div class="bg-shape shape2"></div>
-<div class="bg-shape shape3"></div>
-
-<a href="../../index.html" style="position: absolute; top: 20px; left: 20px; text-decoration: none; color: #f8fafc; background: rgba(51, 65, 85, 0.6); padding: 10px 16px; border-radius: 8px; font-size: 0.9rem; transition: all 0.3s; z-index: 100;">⬅ Back to Home</a>
+<!-- Background and Back Button -->
+<a href="../../index.html" style="position: absolute; top: 20px; left: 20px; text-decoration: none; color: var(--text-secondary); background: var(--surface-color); border: 1px solid var(--border-color); padding: 8px 16px; border-radius: 6px; font-size: 0.9rem; transition: all 0.2s; display: flex; align-items: center; gap: 8px; z-index: 100;"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
 ```
 
 ### ধাপ ৩: টুলটি ওয়েবসাইটে রেজিস্টার করুন
@@ -50,26 +46,26 @@
 উদাহরণ:
 ```javascript
 const TOOLS_LIST = [
-    { id: 'coming-soon', name: 'Coming Soon', icon: '🚀', desc: 'More amazing tools are on the way!' },
-    { id: 'calculator', name: 'Calculator', icon: '🧮', desc: 'A simple and beautiful calculator.' },
-    // আপনার নতুন টুল এখানে অ্যাড করুন:
-    { id: 'stopwatch', name: 'Stopwatch', icon: '⏱️', desc: 'Track your time easily.' }
+    { id: 'coming-soon', name: 'Coming Soon', icon: 'fa-solid fa-hourglass-half', desc: 'More amazing tools are on the way!' },
+    { id: 'calculator', name: 'Calculator', icon: 'fa-solid fa-calculator', desc: 'A simple and beautiful calculator.' },
+    // Add your new tool here:
+    { id: 'stopwatch', name: 'Stopwatch', icon: 'fa-solid fa-stopwatch', desc: 'Track your time easily.' }
 ];
 ```
 *(এখানে `id` এর জায়গায় ঠিক ওই নামটাই দেবেন, যে নামে আপনি `tools/` এর ভেতর ফোল্ডারটি বানিয়েছেন)*
 
-ব্যাস! ওয়েবসাইটে ঢুকে দেখুন আপনার নতুন টুলটি সার্চ বার এবং হোম পেজে অটোমেটিক চলে এসেছে! 🎉
+ব্যাস! ওয়েবসাইটে ঢুকে দেখুন আপনার নতুন টুলটি সার্চ বার এবং হোম পেজে অটোমেটিক চলে এসেছে!
 
 ---
 
-## 🗑️ কীভাবে কোনো টুল রিমুভ করবেন?
+## 3. How to Remove a Tool
 
 ১. প্রথমে `tools/` ফোল্ডার থেকে ওই টুলের ফোল্ডারটি ডিলিট করে দিন।
 ২. এরপর `tools-list.js` ফাইল থেকে ওই টুলের লাইনটি মুছে ফেলুন।
 
 ---
 
-## 💻 গিট (Git) দিয়ে প্রতিদিন কাজ করার নিয়ম (Daily Workflow)
+## 4. Git Daily Workflow
 
 আমরা সরাসরি `main` ব্রাঞ্চে কাজ করবো না। যখনই নতুন কোনো টুল বানাবেন, নিচে দেওয়া এই স্টেপগুলো হুবহু ফলো করবেন, তাহলে আপনাদের কোড কখনো হারাবে না বা কনফ্লিক্ট হবে না।
 
@@ -111,4 +107,4 @@ const TOOLS_LIST = [
    মার্জ হওয়ার পর আবার এই গাইডের **"কাজ শুরু করার আগে"** সেকশনের ১ নাম্বার পয়েন্ট থেকে শুরু করুন (অর্থাৎ `checkout main` এবং `pull origin main` করে নেবেন)।
 
 ---
-কোনো কিছু বুঝতে অসুবিধা হলে, `tools/calculator/index.html` ফাইলটি ওপেন করে দেখতে পারেন যে সেটি কীভাবে কাজ করছে। Happy Coding! 🚀
+কোনো কিছু বুঝতে অসুবিধা হলে, `tools/calculator/index.html` ফাইলটি ওপেন করে দেখতে পারেন যে সেটি কীভাবে কাজ করছে। Happy Coding!

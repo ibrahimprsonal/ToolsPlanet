@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
             card.className = 'tool-card';
             card.dataset.toolId = tool.id;
             card.innerHTML = `
-                <div class="tool-icon">${tool.icon}</div>
+                <div class="tool-icon"><i class="${tool.icon}"></i></div>
                 <h3>${tool.name}</h3>
                 <p>${tool.desc}</p>
             `;

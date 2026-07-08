@@ -6,21 +6,22 @@
     <title>Tools Planet</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div class="app-container">
         <!-- Sidebar -->
         <aside class="sidebar glass">
             <div class="logo">
-                <div class="logo-icon"></div>
+                <div class="logo-icon"><i class="fa-solid fa-layer-group"></i></div>
                 <h2>ToolsPlanet</h2>
             </div>
             <nav id="sidebar-nav">
                 <ul>
-                    <li class="active"><a href="index.html" id="home-link">Home</a></li>
-                    <li><a href="#">Favorites</a></li>
-                    <li><a href="#">Categories</a></li>
-                    <li><a href="#">Settings</a></li>
+                    <li class="active"><a href="index.html" id="home-link"><i class="fa-solid fa-house"></i> Home</a></li>
+                    <li><a href="#"><i class="fa-solid fa-star"></i> Favorites</a></li>
+                    <li><a href="#"><i class="fa-solid fa-border-all"></i> Categories</a></li>
+                    <li><a href="#"><i class="fa-solid fa-gear"></i> Settings</a></li>
                 </ul>
             </nav>
         </aside>
@@ -35,6 +36,7 @@
                         <p>Your beautiful, centralized hub for everyday utilities.</p>
                     </div>
                     <div class="search-container">
+                        <i class="fa-solid fa-magnifying-glass search-icon"></i>
                         <input type="text" id="search-input" class="search-bar glass" placeholder="Search tools... (e.g. calculator)">
                     </div>
                 </header>
@@ -44,11 +46,6 @@
             </div>
         </main>
     </div>
-
-    <!-- Background decoration -->
-    <div class="bg-shape shape1"></div>
-    <div class="bg-shape shape2"></div>
-    <div class="bg-shape shape3"></div>
 
     <script src="tools-list.js"></script>
     <script src="script.js"></script>
